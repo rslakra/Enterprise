@@ -1,0 +1,561 @@
+@import url('./variables.css');
+
+/**
+ * Form Styles
+ */
+.form-style {
+    min-width: 320px;
+    width: 480px;
+    padding: 30px;
+    margin: 40px auto;
+    background: var(--white-color);
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    -moz-border-radius: var(--border-radius);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+}
+
+.form-style .inner-wrap {
+    padding: 30px;
+    background: var(--background-inner-wrap);
+    border-radius: var(--border-radius);
+    margin-bottom: 16px;
+}
+
+.form-style h1,
+.form-style h2 {
+    background: var(--primary-color); /* Use modern primary color */
+    padding: 20px 30px 15px 30px;
+    margin: -30px -30px 30px -30px;
+    border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    font: normal 30px 'Bitter', serif;
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    border: 1px solid var(--primary-dark);
+    text-align: center;
+}
+
+.form-style h1 > span,
+.form-style h2 > span {
+    display: block;
+    margin-top: 2px;
+    font: 14px Arial, Helvetica, sans-serif;
+}
+
+.form-style label {
+    display: block;
+    font: 14px Arial, Helvetica, sans-serif;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.form-style label > div {
+    padding: 8px 0px 8px 4px;
+}
+
+.form-style input[type="text"],
+.form-style input[type="date"],
+.form-style input[type="datetime"],
+.form-style input[type="email"],
+.form-style input[type="number"],
+.form-style input[type="search"],
+.form-style input[type="time"],
+.form-style input[type="url"],
+.form-style input[type="password"],
+.form-style input[type="file"],
+.form-style textarea,
+.form-style select {
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    -moz-border-radius: var(--border-radius);
+    border: 2px solid #fff;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    background: var(--white-color);
+}
+
+.form-style .section {
+    font: normal 20px 'Bitter', serif;
+    color: var(--primary-color); /* Use modern primary color */
+    margin-bottom: 8px;
+}
+
+.form-style .section span {
+    background: var(--primary-color); /* Use modern primary color */
+    padding: 8px 10px 2px 10px;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 4px solid #fff;
+    font-size: 16px;
+    margin-left: -45px;
+    color: #fff;
+    margin-top: -3px;
+}
+
+.form-style input[type="button"],
+.form-style input[type="submit"] {
+    background: var(--primary-color); /* Use modern primary color */
+    padding: 8px 20px 8px 20px;
+    border-radius: var(--border-radius);
+    -webkit-border-radius:var(--border-radius);
+    -moz-border-radius: var(--border-radius);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    font: normal 30px 'Bitter', serif;
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    border: 1px solid var(--primary-dark);
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.form-style input[type="button"]:hover,
+.form-style input[type="submit"]:hover {
+    background: var(--primary-dark); /* Darker shade on hover */
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+}
+
+.form-style .privacy-policy {
+    float: right;
+    width: 250px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: var(--text-secondary);
+    margin-top: 10px;
+    text-align: right;
+}
+
+.form-label-style {
+    display: flex;
+    align-items: center;
+    vertical-align: inherit;
+}
+
+.form-span-checkbox {
+    padding: 0px 8px;
+    margin-top: 6px;
+    vertical-align: middle;
+}
+
+input[type=checkbox], input[type=radio] {
+    vertical-align: middle;
+}
+
+/**
+ * Read-only input styles for delete/confirmation forms
+ */
+.form-style input[readonly] {
+    background-color: var(--readonly-bg) !important;
+    cursor: not-allowed;
+    color: var(--readonly-text);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/**
+ * Delete button styles for delete/confirmation forms
+ */
+.form-style input[type="submit"][value="Delete"] {
+    background: var(--secondary-color) !important;
+    border-color: var(--secondary-dark) !important;
+}
+
+.form-style input[type="submit"][value="Delete"]:hover {
+    background: var(--secondary-dark) !important;
+    border-color: var(--secondary-dark) !important;
+}
+
+/**
+ * Generic button styles (used in forms)
+ */
+.button, a.button {
+    background: var(--primary-color); /* Use modern primary color */
+    padding: 8px 20px 8px 20px;
+    margin: 10px 0px 10px -1px;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    -moz-border-radius: var(--border-radius);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    font: normal 30px 'Bitter', serif;
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+    border: 1px solid var(--primary-dark);
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.button:hover, a.button:hover {
+    background: var(--primary-dark); /* Darker shade on hover */
+    color: #fff;
+}
+
+/**
+ * Form button section styles - Modern panel design
+ */
+.form-style .button-section {
+    background: var(--background-inner-wrap);
+    padding: 20px 30px;
+    margin: 30px -30px -30px -30px;
+    border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    border-top: 2px solid var(--border-color-light);
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-style .button-section input[type="submit"],
+.form-style .button-section input[type="button"],
+.form-style .button-section .button,
+.form-style .button-section a.button {
+    margin: 0;
+    min-width: 100px;
+}
+
+.button-section {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.submit-cancel {
+    margin-top: 2em;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.submit-cancel .btn {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/**
+ * Error message styles for form validation
+ */
+.alert {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid var(--error-border);
+}
+
+.alert-danger strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.alert-danger ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+}
+
+.alert-danger li {
+    margin: 5px 0;
+}
+
+/**
+ * Field error styles
+ */
+.form-style input.field-error,
+.form-style select.field-error,
+.form-style textarea.field-error {
+    border-color: var(--secondary-color) !important;
+    background-color: var(--error-field-bg);
+}
+
+.field-error-message {
+    display: block;
+    color: var(--secondary-color);
+    font-size: 12px;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/**
+ * Modern Contact Form Style - Matching Mobile App Design
+ */
+.modern-form-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    background: var(--white-color);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+
+}
+
+.wave-top {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    position: relative;
+}
+
+.wave-top svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.wave-bottom {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    position: relative;
+}
+
+.wave-bottom svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.modern-form-content {
+    padding: 40px 30px;
+    background: var(--white-color);
+}
+
+.modern-form-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modern-form {
+    width: 100%;
+}
+
+.modern-form-field {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.modern-form-field-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.modern-form-field-half {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.modern-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modern-form-input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    background: transparent;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.modern-form-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modern-form-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.modern-form-input-readonly {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    background: transparent;
+}
+
+.modern-form-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modern-form-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.modern-form-checkbox-label span {
+    user-select: none;
+}
+
+.modern-form-submit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modern-form-submit {
+    flex: 0 0 auto;
+    padding: 12px 24px;
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: 2px solid var(--white-color);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modern-form-submit:hover {
+    background: var(--primary-light);
+    color: var(--white-color);
+    border-color: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modern-form-submit:active {
+    transform: translateY(0);
+}
+
+.modern-form-cancel {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    background: var(--secondary-light);
+    border: 2px solid var(--secondary-light);
+    border-radius: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modern-form-cancel:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modern-form-content {
+        padding: 30px 20px;
+    }
+    
+    .modern-form-title {
+        font-size: 28px;
+        padding: 20px 20px 0 20px;
+    }
+    
+    .modern-form-field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .modern-form-field-half {
+        margin-bottom: 30px;
+    }
+    
+    .wave-top,
+    .wave-bottom {
+        height: 100px;
+    }
+    
+    .modern-form-submit-container {
+        padding: 15px 20px;
+    }
+}
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Users'">
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+        <!-- List of Users -->
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Status</th>
+
+                <th>Test User</th>
+                <th>Registered On</th>
+                <th>Phone</th>
+                <th>DOB</th>
+                <th>Profile Urls</th>
+                <th>Referral Code</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:switch="${users.size()}">
+                <div th:case="0">
+                    <tr>
+                        <td colspan="8">
+                            <h2>No Records Found!</h2>
+                        </td>
+                    </tr>
+                </div>
+                <div th:case="*">
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"/>
+                        <td th:text="${user.email}"/>
+                        <td th:text="${user.firstName}"/>
+                        <td th:text="${user.middleName}"/>
+                        <td th:text="${user.lastName}"/>
+                        <td th:text="${user.status}"/>
+                        <td th:text="${user.testUser}"/>
+                        <td th:text="${user.registeredOn}"/>
+                        <td th:text="${user.phoneNumber}"/>
+                        <td th:text="${user.dob}"/>
+                        <td th:text="${user.profileUrls}"/>
+                        <td th:text="${user.referralCode}"/>
+
+                        <td class="action-button">
+                            <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
+                                <i class="fa fa-pencil" style="font-size:24px;color:red"></i>
+                            </a>
+                            <a class="action-button-padding" th:href="@{/users/delete/{id}(id=${user.id})}">
+                                <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            </tbody>
+        </table>
+
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+</html>

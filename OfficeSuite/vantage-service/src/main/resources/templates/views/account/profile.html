@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Account Profile'">
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+        <!-- User Profile -->
+        <div th:if="${user != null}">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${user.id}"/>
+                    <td th:text="${user.name}"/>
+                    <td th:text="${user.dob}"/>
+                    <td th:text="${user.status}"/>
+                    <td class="action-button">
+                        <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
+                            <i class="fa fa-pencil" style="font-size:24px;color:red"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${user == null}">
+            <h2>No User Profile Found!</h2>
+        </div>
+
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+</html>

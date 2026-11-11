@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Upload Cities'">
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+
+        <div class="contents"> <!-- div:contents-start -->
+            <!-- Form -->
+            <div class="form-style">
+                <h2 class="center-align">Upload Cities</h2>
+                <form action="#" th:action="@{/city/upload}" method="POST" enctype="multipart/form-data">
+                    <div class="section"><span>*</span>Upload Cities</div>
+                    <div class="inner-wrap">
+                        <label><div>Upload</div>
+                            <input type="file" name="file" placeholder="Cities File"/>
+                        </label>
+                    </div>
+
+                    <div class="button-section"> <!-- div:button-section-start -->
+                        <input type="submit" name="Submit"/>
+                        <a class="button" th:href="@{/cities}">Cancel</a>
+                    </div> <!-- div:button-section-end -->
+
+                </form>
+            </div>
+
+        </div> <!-- div:contents-end -->
+
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+</html>

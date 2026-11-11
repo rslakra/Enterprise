@@ -1,0 +1,114 @@
+@import url('./variables.css');
+
+/**
+ * Generic Styles
+ */
+
+/* Base HTML and Body styles */
+html {
+    background-color: var(--background-color);
+    font-size: 16px;
+}
+
+body {
+    font-size: 16px;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    margin: 0px auto;
+    padding: 20px 20px;
+}
+
+/* Typography */
+h2 {
+    margin-bottom: 25px;
+}
+
+ol > li {
+    margin-top: 10px;
+}
+
+/* Generic link styles */
+a {
+    text-decoration: none;
+    color: var(--text-secondary);
+}
+
+a:hover {
+    color: var(--primary-color); /* Use modern primary color for hover */
+    border-bottom: 1px solid var(--primary-color);
+    transition: color 0.2s ease, border-color 0.2s ease; /* Smooth transition */
+}
+
+/* Utility classes */
+.left-align {
+    text-align: left;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.justify-align {
+    text-align: justify;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.padding-default {
+    padding: 20px;
+}
+
+.welcome {
+    float: right;
+}
+
+/* Footer styles */
+footer {
+    display: block;
+    background-color: var(--footer-bg); /* White to match navbar */
+    text-align: center;
+    padding: inherit;
+    color: var(--footer-text); /* Dark text to match navbar */
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color-light); /* Subtle border to separate from content */
+}
+
+/* Page header */
+.page-header {
+    margin: 16px 0 16px;
+}
+
+/* Modal styles */
+.modal-body .submit-cancel {
+    margin-top: 2em;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.modal-body .btn:not(.btn-cancel) {
+    float: right;
+    margin-left: 5px;
+}
+
+/* Generic button spacing */
+.btn + .btn {
+    margin-left: 5px;
+}
+
+/* Editable styles */
+.editable-click {
+    cursor: pointer;
+}
+
+/* Control label */
+span.control-label {
+    font-weight: 600;
+}
+
+/* City link spacing */
+.city-link + .city-link {
+    display: inline-block;
+    margin-left: 10px;
+}

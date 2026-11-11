@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Delete City'">
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+
+        <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
+        <th:block th:fragment="form">
+            <!-- Form -->
+            <div class="form-style">
+                <h2 class="center-align">Delete City</h2>
+                <form th:action="@{|/cities/${city.id}/delete|}" th:object="${city}" method="post">
+                    <div class="section"><span>*</span>City Details</div>
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <div class="inner-wrap">
+                        <label><div>Name</div>
+                            <input type="text" th:value="*{name}" readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                        <label><div>Founded In</div>
+                            <input type="text" 
+                                   th:value="${city.foundedIn != null ? (city.foundedIn lt 0 ? (city.foundedIn * -1) + ' BC' : city.foundedIn + ' AD') : ''}" 
+                                   readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                        <label><div>Population</div>
+                            <input type="text" 
+                                   th:value="${city.population != null ? #numbers.formatInteger(city.population, 1, 'DEFAULT') : ''}" 
+                                   readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                    </div>
+
+                    <div class="button-section"> <!-- div:button-section-start -->
+                        <input type="submit" name="Submit" value="Delete"/>
+                        <a class="button" th:href="@{/cities}">Cancel</a>
+                    </div> <!-- div:button-section-end -->
+                </form>
+            </div>
+        </th:block>
+
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+</html>
