@@ -1,5 +1,6 @@
-# Payment Service
+# Tally Service
 
+Tally is a payment and double-entry bookkeeping (ledger) service.
 
 - What's double-entry bookkeeping?
 
@@ -23,12 +24,9 @@ For example, if a business takes out a $5,000 loan, the cash (asset) account is 
 ## Project Structure
 ```
 /
-├── <modules>                       # The name of the module
-├── api                             # The web server
-│    ├── crawler                    # crawler
-│    ├── indexer                    # indexer
-│    ├── searcher                   # searcher
-│    ├── v1                         # v1 blueprints/endpoints
+├── app                             # The service domain code
+│    └── enums                      # Enums like card_type, transaction_type etc.
+├── api                             # The API blueprints/endpoints
 │    └── __init__.py                # The package initializer
 ├── resources                       # The service resources
 │    ├── images                     # images
@@ -58,9 +56,7 @@ For example, if a business takes out a $5,000 loan, the cash (asset) account is 
 ├── README.md                       # Instructions and helpful links
 ├── requirements.txt                # The webapp's dependencies/packages
 ├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
-├── wsgi.py                         # the WSGI app
-├── <module>                        # The module service
-└── /
+└── wsgi.py                         # the WSGI app
 ```
 
 ## Local Development
@@ -118,7 +114,7 @@ RDS_POOL_SIZE = 1
 ```
 
 
-### Run WebCrawler Application
+### Run Tally Application
 
 **By default**, Flask runs the application on **port 5000**.
 
@@ -129,12 +125,12 @@ python wsgi.py
 OR
 
 python -m flask --app wsgi run
-# http://127.0.0.1:5000/explore
+# http://127.0.0.1:5000/tally
 
 OR
 
 python -m flask --app wsgi run --port 8080 --debug
-# http://127.0.0.1:8080/explore
+# http://127.0.0.1:8080/tally
 
 OR
 
@@ -142,18 +138,18 @@ OR
 
 # equivalent to 'from app import app'
 gunicorn wsgi:app
-# http://127.0.0.1:8000/explore
+# http://127.0.0.1:8000/tally
 
 gunicorn -w 2 'wsgi:app'
 gunicorn -c gunicorn.conf.py wsgi:app
-# http://127.0.0.1:8080/explore
+# http://127.0.0.1:8080/tally
 ```
 
 **Note**:- You can stop the development server by pressing ```Ctrl+C``` in your terminal.
 
 ### Access Flask Application
-- [EWS on port 8080](http://127.0.0.1:8080/posts)
-- [EWS on port 5000](http://127.0.0.1:5000/posts)
+- [Tally on port 8080](http://127.0.0.1:8080/tally)
+- [Tally on port 5000](http://127.0.0.1:5000/tally)
 
 
 ### Build Project
@@ -183,7 +179,6 @@ python -m unittest discover -s ./tests -p "test_*.py"
 - [Python Packaging User Guide](https://packaging.python.org/en/latest/)
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/)
 - [The best Python HTTP clients](https://www.scrapingbee.com/blog/best-python-http-clients/)
-- [Web Crawler in Python: Step-by-Step Tutorial](https://www.zenrows.com/blog/explore-python)
 
 #### WSGI Servers
 

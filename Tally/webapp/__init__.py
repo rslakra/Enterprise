@@ -130,13 +130,13 @@ class WebApp:
         # Initialize/Register Blueprints, if any
 
         """
-        Create an instance of Blueprint prefixed with '/explore' as named bp.
+        Create an instance of Blueprint prefixed with '/tally' as named bp.
         Parameters:
             name: "ws - web server", is the name of the blueprint and identifies it in the Flask project.
             __name__: The name of blueprint and used later when you import api into' app.py'.
-            url_prefix: the web url prefixed with '/explore'
+            url_prefix: the web url prefixed with '/tally'
         """
-        bp = Blueprint("ws", __name__, url_prefix="/explore")
+        bp = Blueprint("ws", __name__, url_prefix="/tally")
 
         # register more app's here.
         bp.register_blueprint(webapp_bp)
