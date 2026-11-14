@@ -1,3 +1,9 @@
+[submodule "BankService"]
+	path = BankService
+	url = git@github.com:rslakra/BankService.git
+[submodule "ImageService"]
+	path = ImageService
+	url = git@github.com:rslakra/ImageService.git
 [submodule "Posts"]
 	path = Posts
 	url = git@github.com:rslakra/Posts.git
