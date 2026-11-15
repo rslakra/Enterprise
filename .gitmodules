@@ -10,6 +10,3 @@
 [submodule "retail-suite"]
 	path = retail-suite
 	url = git@github.com:rslakra/retail-suite.git
-[submodule "YatraSuite"]
-	path = YatraSuite
-	url = git@github.com:rslakra/YatraSuite.git
