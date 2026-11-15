@@ -1,0 +1,33 @@
+default:
+    just --list --unsorted
+
+################################################################
+# Build and Deploy                                             #
+################################################################
+
+# Clean Environment
+clean:
+    deactivate
+    rm -rf venv
+
+# Setup Environment
+setup:
+    python3 -m pip install virtualenv
+    python3 -m venv venv
+    . venv/bin/activate
+
+# Install Dependencies/Requirements
+install-requirements:
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+
+
+# Run Application
+run:
+    python main.py
+
+
+# Run Flask Application
+run-flask:
+    python -m flask --app app run --port 8080 --debug
+

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speed Test Results</title>
+    {% if in_progress %}
+    <meta http-equiv="refresh" content="3">
+    {% endif %}
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        .result-box { border: 1px solid #ccc; padding: 20px; display: inline-block; margin-top: 20px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Speed Test Results</h1>
+    {% if in_progress %}
+        <p>Test is in progress... This page will refresh automatically.</p>
+        <img src="https://i.stack.imgur.com/kKu0J.gif" alt="Loading..." width="50" height="50">
+    {% else %}
+        {% if results and not results.get('error') %}
+        <div class="result-box">
+            <h2>Test Complete!</h2>
+            <p><strong>Download Speed:</strong> {{ results.download_mbps }} Mbps</p>
+            <p><strong>Upload Speed:</strong> {{ results.upload_mbps }} Mbps</p>
+            <p><strong>Ping:</strong> {{ results.ping_ms }} ms</p>
+        </div>
+        {% elif results and results.get('error') %}
+        <div class="result-box error">
+            <h2>Error</h2>
+            <p>An error occurred during the test: {{ results.error }}</p>
+        </div>
+        {% else %}
+        <p>No test has been performed yet. Go back to the <a href="{{ url_for('index') }}">homepage</a> to start one.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

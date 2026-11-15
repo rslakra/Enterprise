@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test - Real-time Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .speed-meters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .speed-meters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .meter-container {
+            text-align: center;
+        }
+
+        .meter-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .meter-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .speedometer {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+        }
+
+        .speedometer-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .speedometer-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .speed-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1;
+        }
+
+        .speed-unit {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .control-panel {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .start-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .start-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status-message.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .history-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .history-title {
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .history-chart {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .client-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .client-info h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .testing {
+            animation: pulse 1.5s infinite;
+        }
+
+        .gauge-container {
+            position: relative;
+            width: 250px;
+            height: 125px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+        }
+
+        .gauge-bg {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg,
+                    #e0e0e0 0deg,
+                    #e0e0e0 180deg,
+                    transparent 180deg);
+        }
+
+        .gauge-fill {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg,
+                    #4CAF50 0deg,
+                    #FFC107 60deg,
+                    #FF9800 120deg,
+                    #f44336 180deg);
+            transform: rotate(0deg);
+            transition: transform 0.5s ease;
+            mask: radial-gradient(circle at center, transparent 60%, black 60%);
+            -webkit-mask: radial-gradient(circle at center, transparent 60%, black 60%);
+        }
+
+        .gauge-center {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            top: 50px;
+            left: 50px;
+        }
+
+        .gauge-value {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 60px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .gauge-label {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 105px;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Internet Speed Test</h1>
+            <p>Test your download and upload speeds in real-time</p>
+        </div>
+
+        <div class="main-card">
+            <div class="control-panel">
+                <button id="startTest" class="start-button">Start Speed Test</button>
+                <div id="statusMessage" class="status-message"></div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="speed-meters">
+                <div class="meter-container">
+                    <div class="meter-title">
+                        <svg class="meter-icon" fill="#4CAF50" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 4a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" />
+                        </svg>
+                        Download Speed
+                    </div>
+                    <div class="gauge-container">
+                        <div class="gauge-bg"></div>
+                        <div id="downloadGauge" class="gauge-fill"></div>
+                        <div class="gauge-center"></div>
+                        <div id="downloadValue" class="gauge-value">0</div>
+                        <div class="gauge-label">Mbps</div>
+                    </div>
+                </div>
+
+                <div class="meter-container">
+                    <div class="meter-title">
+                        <svg class="meter-icon" fill="#2196F3" viewBox="0 0 20 20">
+                            <path
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2.586L6.707 11.88a1 1 0 101.414 1.414L10 11.414V14a1 1 0 102 0v-2.586l1.879 1.88a1 1 0 101.414-1.414L11 7.586V6z" />
+                        </svg>
+                        Upload Speed
+                    </div>
+                    <div class="gauge-container">
+                        <div class="gauge-bg"></div>
+                        <div id="uploadGauge" class="gauge-fill"></div>
+                        <div class="gauge-center"></div>
+                        <div id="uploadValue" class="gauge-value">0</div>
+                        <div class="gauge-label">Mbps</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Ping / Latency</div>
+                    <div id="pingValue" class="stat-value">-- ms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Jitter</div>
+                    <div id="jitterValue" class="stat-value">-- ms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Download Max</div>
+                    <div id="downloadMax" class="stat-value">-- Mbps</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Upload Max</div>
+                    <div id="uploadMax" class="stat-value">-- Mbps</div>
+                </div>
+            </div>
+
+            <div class="client-info" id="clientInfo" style="display: none;">
+                <h3>Connection Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">IP Address:</span>
+                        <span id="clientIp" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">ISP:</span>
+                        <span id="clientIsp" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location:</span>
+                        <span id="clientLocation" class="info-value">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Test Server:</span>
+                        <span id="testServer" class="info-value">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="history-section">
+                <h2 class="history-title">Speed History</h2>
+                <div class="history-chart">
+                    <canvas id="speedChart" width="400" height="200"></canvas>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/speedtest.js"></script>
+</body>
+
+</html>

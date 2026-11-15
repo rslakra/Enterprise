@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Node.js Network Speed Test</h1>
+        <button id="startButton">Start Speed Test</button>
+        <div class="loading" id="loadingMessage">
+            <p>Test is running...</p>
+            <p>This may take a moment. Results will appear below.</p>
+        </div>
+        <div class="result" id="results"></div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const resultsDiv = document.getElementById('results');
+
+        startButton.addEventListener('click', async () => {
+            startButton.disabled = true;
+            resultsDiv.innerHTML = '';
+            loadingMessage.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/speedtest');
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultsDiv.innerHTML = `
+                        <h2>Test Complete!</h2>
+                        <p><strong>Download Speed:</strong> ${data.download_mbps}</p>
+                        <p><strong>Upload Speed:</strong> ${data.upload_mbps}</p>
+                        <p><strong>Ping:</strong> ${data.ping_ms}</p>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `<h2 style="color: red;">Error:</h2><p>${data.error}</p><p>${data.message}</p>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<h2 style="color: red;">Network Error:</h2><p>Could not connect to the server.</p>`;
+                console.error('Fetch error:', error);
+            } finally {
+                loadingMessage.style.display = 'none';
+                startButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
